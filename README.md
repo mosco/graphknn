@@ -1,7 +1,12 @@
+[![PyPI version](https://badge.fury.io/py/graphknn.svg)](https://badge.fury.io/py/graphknn)
+
 # Graph KNN Python module
 
 Given an undirected graph and a set of terminal (or seed) vertices T, this python package finds, for every vertex, its K nearest neighbors from the set T.
 
+# Installation
+
+```pip install graphknn```
 
 # Usage
 
