@@ -67,8 +67,8 @@ This module implements a faster approach that can be described as performing |T|
 
 For more details, including a proof of correctness and runtime bounds, see Section 4 and Appendix B of our paper:
 
-[Amit Moscovich](http://mosco.github.org), [Ariel Jaffe](https://arieljaffe.wixsite.com/homepage), [Boaz Nadler](http://www.weizmann.ac.il/math/Nadler/home)
-[**Minimax-optimal semi-supervised regression on unknown manifolds**](https://arxiv.org/abs/1611.02221)
-AISTATS 2017
+[Amit Moscovich](https://mosco.github.io), [Ariel Jaffe](https://arieljaffe.wixsite.com/homepage), [Boaz Nadler](http://www.weizmann.ac.il/math/Nadler/home)
+[**Minimax-optimal semi-supervised regression on unknown manifolds**](https://arxiv.org/abs/1611.02221),
+AISTATS (2017).
 
 Please cite our paper if using this code for your research.
