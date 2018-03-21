@@ -4,8 +4,8 @@ Given an undirected graph and a set of terminal (or seed) vertices T, this pytho
 
 # Interface
 
-The main functions are graphknn.algorithm1(W, mask, k) and graphknn.algorithm1(W, mask, k).
-Both have the same interface but slightly different implementations. Algorithm 1 is simpler whereas algorithm 2 has tighter runtime guarantees.
+The main functions are **graphknn.algorithm1(W, mask, k)** and **graphknn.algorithm2(W, mask, k)**.
+Both algorithms have the same interface with slightly different implementations. Algorithm 1 is simpler whereas Algorithm 2 has tighter runtime guarantees.
 
 We have seen cases where algorithm 1 is faster than algorithm 2 and vice versa, so try both on your data and choose the faster one.
 
@@ -22,13 +22,13 @@ We have seen cases where algorithm 1 is faster than algorithm 2 and vice versa, 
 
 A simple solution to the problem of finding the k nearest terminal vertices is
 to run Dijkstra's algorithm from each of the terminal vertices, forming a |T| by |V| matrix. Then for each vertex i we examine the i-th column of the matrix and pick the k nearest cells (this can be done efficiently using Hoare's selection algorithm). The runtime of this method is O(|T||V|log|V| + |E|).
-
 However, this approach is wasteful, since it spends a lot of time finding irrelevant shortest paths from terminals to vertices that are very far from them.
 
-This package implements a faster approach that can be described as performing |T| Dijkstra runs in parallel combined with an early stopping rule that prevents unnecessary traversals. This stopping rule simply stops exploring vertices once we have found for them shortest paths from k different terminals.
+This module implements a faster approach that can be described as performing |T| Dijkstra runs in parallel combined with an early stopping rule that prevents unnecessary traversals. This stopping rule simply stops exploring vertices once we have found shortest paths from k different terminals.
 
-For more details, see Section 4 and Appendix B of our paper:
+For more details, including a proof of correctness and runtime bounds, see Section 4 and Appendix B of our paper:
 
-Amit Moscovich, Ariel Jaffe, Boaz Nadler, [**Minimax-optimal semi-supervised regression on unknown manifolds**](https://arxiv.org/abs/1611.02221)
+[Amit Moscovich](http://mosco.github.org), [Ariel Jaffe](https://arieljaffe.wixsite.com/homepage), [Boaz Nadler](http://www.weizmann.ac.il/math/Nadler/home), [**Minimax-optimal semi-supervised regression on unknown manifolds**](https://arxiv.org/abs/1611.02221)
 Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS 2017)
-Please cite this paper if using this code for research.
+
+Please cite our paper if using this code for your research.
