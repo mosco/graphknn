@@ -1,14 +1,13 @@
 
+# Graph KNN Python module
+
 Given an undirected graph and a set of terminal (or seed) vertices T, this python package finds, for every vertex, its K nearest neighbors from the set T.
 
 
-# Interface
+# Usage
 
 The main functions are **graphknn.algorithm1(W, mask, k)** and **graphknn.algorithm2(W, mask, k)**.
-Both algorithms have the same interface with slightly different implementations. Algorithm 1 is simpler whereas Algorithm 2 has tighter runtime guarantees.
-
-We have seen cases where algorithm 1 is faster than algorithm 2 and vice versa, so try both on your data and choose the faster one.
-
+Both algorithms have the same interface with slightly different implementations.
 **Input**:
 * **W:** n x n matrix of edge weights, of type scipy.sparse.csr_matrix.
 * **mask:** boolean array of length n indicating which vertices belong to the terminal set T.
@@ -17,6 +16,46 @@ We have seen cases where algorithm 1 is faster than algorithm 2 and vice versa, 
 **Output:**
 * **knn:** this is an array of size n such that knn[i] is a list of up to k pairs of (distance, terminal_vertex_index). Note that knn[i] is not sorted.
 
+
+Algorithm 1 is simpler whereas Algorithm 2 has tighter runtime guarantees. We have seen cases where algorithm 1 is faster than algorithm 2 and vice versa, so try both on your data and choose the faster one.
+
+
+## Example
+
+```
+import numpy as np
+import scipy.sparse
+import graphknn
+
+def build_sparse_undirected_nonnegative_csr_matrix(n):
+    W = np.random.random((n,n))
+    W = W + W.transpose()
+    W[W < 1.5] = np.inf
+    return scipy.sparse.csr_matrix(W)
+
+
+def test_graphknn():
+    N = 10
+    p = 0.5 
+    k = 3
+    
+    W = build_sparse_undirected_nonnegative_csr_matrix(N)
+    mask = np.random.random(N) < p
+
+    print('Graph edges:')
+    print(W,'\n')
+
+    print('Terminal indices:')
+    print(mask.nonzero()[0], '\n')
+
+    result = graphknn.algorithm1(W, mask, k)
+
+    print('K nearest terminal indices of all vertices:')
+    for i in range(len(result)):
+        print('result[{0}]:\n{1}'.format(i, sorted(result[i])))
+
+test_graphknn()
+```
 
 # Details
 
